@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sindh Sarswat Brahman Contacts</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f7f6;
+            color: #333;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            flex: 1;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            font-size: 28px;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        .search-section {
+            margin-bottom: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        label {
+            font-weight: 600;
+            color: #34495e;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #bdc3c7;
+            border-radius: 6px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s;
+            background-color: #fff;
+        }
+
+        select:focus {
+            border-color: #3498db;
+        }
+
+        .table-container {
+            margin-top: 20px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            background: #fff;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #3498db;
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .editable-cell {
+            outline: none;
+            min-height: 20px;
+        }
+
+        .editable-cell:focus {
+            background-color: #fffde7;
+            border: 1px dashed #3498db;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 15px;
+            font-size: 14px;
+            color: #7f8c8d;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        footer strong {
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Sindh Sarswat Birheman Contact Numbers</h1>
+
+    <div class="search-section">
+        <label for="citySelect">Select City:</label>
+        <select id="citySelect" onchange="updateTable()">
+            <option value="">-- Choose a City --</option>
+            <option value="badin">Badin</option>
+            <option value="dadu">Dadu</option>
+            <option value="ghotki">Ghotki</option>
+            <option value="hyderabad">Hyderabad</option>
+            <option value="jacobabad">Jacobabad</option>
+            <option value="jamshoro">Jamshoro</option>
+            <option value="karachi">Karachi</option>
+            <option value="kashmore">Kashmore</option>
+            <option value="khairpur">Khairpur</option>
+            <option value="khipro">Khipro</option>
+            <option value="larkana">Larkana</option>
+            <option value="matiari">Matiari</option>
+            <option value="mirpurkhas">Mirpur Khas</option>
+            <option value="mithi">Mithi</option>
+            <option value="naushahro">Naushahro Feroze</option>
+            <option value="nawabshah">Nawabshah (Shaheed Benazirabad)</option>
+            <option value="qambar">Qambar Shahdadkot</option>
+            <option value="ratodero">Ratodero</option>
+            <option value="sanghar">Sanghar</option>
+            <option value="shikarpur">Shikarpur</option>
+            <option value="sukkur">Sukkur</option>
+            <option value="tando-adam">Tando Adam</option>
+            <option value="tando-allahyar">Tando Allahyar</option>
+            <option value="tando-muhammad-khan">Tando Muhammad Khan</option>
+            <option value="tharparkar">Tharparkar</option>
+            <option value="thatta">Thatta</option>
+            <option value="umerkot">Umerkot</option>
+        </select>
+    </div>
+
+    <div class="table-container" id="tableContainer" style="display: none;">
+        <h3 id="selectedCityTitle" style="margin-bottom: 10px; color: #2c3e50;"></h3>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 40%;">Name</th>
+                    <th style="width: 30%;">1st Cell Phone Number</th>
+                    <th style="width: 30%;">2nd Cell Phone Number</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                </tbody>
+        </table>
+    </div>
+</div>
+
+<footer>
+    Credits: <strong>Sharma Je Links</strong>
+</footer>
+
+<script>
+    // Data structures to hold contact info temporarily in browser memory
+    // (Aap isme hardcoded data bhi daal sakte hain)
+    function updateTable() {
+        const select = document.getElementById('citySelect');
+        const container = document.getElementById('tableContainer');
+        const title = document.getElementById('selectedCityTitle');
+        const tbody = document.getElementById('tableBody');
+        
+        const selectedCity = select.options[select.selectedIndex].text;
+
+        if (select.value === "") {
+            container.style.display = "none";
+            return;
+        }
+
+        // Show table and update title
+        container.style.display = "block";
+        title.innerText = `Contacts for ${selectedCity}`;
+        
+        // Clear previous rows
+        tbody.innerHTML = "";
+
+        // Generate 50 Blank rows dynamically
+        // Note: contenteditable="true" lagaya hai taaki aap direct screen par bhi likh sakein testing ke liye
+        for (let i = 1; i <= 50; i++) {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td class="editable-cell" contenteditable="true"></td>
+                <td class="editable-cell" contenteditable="true"></td>
+                <td class="editable-cell" contenteditable="true"></td>
+            `;
+            tbody.appendChild(row);
+        }
+    }
+</script>
+
+</body>
+</html>
